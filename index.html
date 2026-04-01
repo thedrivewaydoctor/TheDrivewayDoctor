@@ -394,7 +394,7 @@
   (function(){
     var s = document.createElement('script');
     s.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
-    s.onload = function(){ emailjs.init({ publicKey: 'YOUR_EMAILJS_PUBLIC_KEY' }); };
+    s.onload = function(){ emailjs.init({ publicKey: 'GZKwrsltNRbfM-P2B' }); };
     document.head.appendChild(s);
   })();
 
@@ -450,7 +450,7 @@
       '(Images cannot be forwarded via EmailJS — please reply to the customer to request them.)',
     ].filter(function(l){ return l !== null; }).join('\n');
 
-    emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
+    emailjs.send('service_j7i9kda', 'template_nutkvri', {
       to_email:  'tddchichester@gmail.com',
       from_name: firstName + ' ' + lastName,
       reply_to:  email,
