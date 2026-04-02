@@ -3,7 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Driveway Doctor</title>
+<title>The Driveway Doctor | Driveway &amp; Patio Cleaning Chichester</title>
+<meta name="description" content="Professional jet washing, driveway and patio deep cleaning in Chichester &amp; Surrounding Areas. Get a free, no-obligation quote today from The Driveway Doctor.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://tddchichester.co.uk/">
+<link rel="icon" type="image/png" href="https://i.postimg.cc/76n6y8JJ/The-driveway-doctor-logo.png">
+<link rel="apple-touch-icon" href="https://i.postimg.cc/76n6y8JJ/The-driveway-doctor-logo.png">
+<!-- Open Graph (controls how the site appears when shared on social/Google) -->
+<meta property="og:title" content="The Driveway Doctor | Chichester &amp; Surrounding Areas">
+<meta property="og:description" content="Professional jet washing and driveway cleaning in Chichester. From £3 per m². Get a free quote today.">
+<meta property="og:image" content="https://i.postimg.cc/76n6y8JJ/The-driveway-doctor-logo.png">
+<meta property="og:type" content="website">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -33,7 +43,8 @@
 
   @media (max-width: 660px) {
     .hero { flex-direction: column; align-items: center; text-align: center; padding: 2.5rem 1.5rem; gap: 1.5rem; }
-    .hero-text { align-items: center; }
+    .hero-text { align-items: center; width: 100%; }
+    .hero-btns { justify-content: center; width: 100%; }
     .hero-logo { width: min(200px, 65vw); }
     .nav-links { display: none; }
   }
@@ -91,9 +102,9 @@
   .form-group textarea { min-height: 90px; resize: vertical; }
   .form-section-heading { font-size: 0.78rem; font-weight: 800; color: #69BDEB; letter-spacing: 2px; text-transform: uppercase; margin: 1.5rem 0 0.75rem; border-bottom: 1.5px solid #d0eaf8; padding-bottom: 0.5rem; }
   .radio-group { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 0.4rem; }
-  .radio-item { display: flex; align-items: center; gap: 0.7rem; cursor: pointer; background: #fff; border: 1.5px solid #c8e4f5; border-radius: 8px; padding: 0.65rem 0.9rem; transition: border-color 0.2s, background 0.2s; }
+  .radio-item { display: flex; flex-direction: row; align-items: center; gap: 12px; cursor: pointer; background: #fff; border: 1.5px solid #c8e4f5; border-radius: 8px; padding: 0.75rem 1rem; transition: border-color 0.2s, background 0.2s; }
   .radio-item:hover { border-color: #69BDEB; background: #f0f9fe; }
-  .radio-item input[type="radio"] { width: 18px; height: 18px; accent-color: #69BDEB; cursor: pointer; flex-shrink: 0; }
+  .radio-item input[type="radio"] { width: 18px; height: 18px; flex-shrink: 0; accent-color: #69BDEB; cursor: pointer; }
   .radio-item:has(input:checked) { border-color: #69BDEB; background: #e3f4fc; }
   .radio-item span { font-size: 0.9rem; color: #3a5068; font-weight: 600; }
   .file-upload { width: 100%; padding: 0.65rem 0.9rem; border: 1.5px dashed #69BDEB; border-radius: 8px; font-family: 'Nunito', sans-serif; font-size: 0.9rem; color: #4a5568; background: #fff; cursor: pointer; }
@@ -130,24 +141,6 @@
 </head>
 <body>
 
-<!-- ============================================================
-     HOW TO UPDATE YOUR LOGO
-     ============================================================
-     Every logo image in this file has the src attribute set to:
-       YOUR_LOGO_URL_HERE
-
-     To replace them:
-     1. Upload your transparent PNG logo to any image host, e.g.:
-        - Google Drive  (share > Anyone with link > copy link,
-          then convert to direct link at sites.google.com/uc?id=FILE_ID)
-        - Imgur.com     (upload > right-click image > Copy image address)
-        - Squarespace / your own hosting
-     2. Press Ctrl+F (or Cmd+F on Mac) and search for:
-           YOUR_LOGO_URL_HERE
-     3. Replace ALL instances with your direct image URL.
-        There are 3 logos: nav, hero, and footer.
-     ============================================================ -->
-
 <!-- NAVIGATION -->
 <nav>
   <img class="nav-logo-img" src="https://i.postimg.cc/76n6y8JJ/The-driveway-doctor-logo.png" alt="The Driveway Doctor">
@@ -167,7 +160,7 @@
   </div>
   <div class="hero-text">
     <h1>The Driveway Doctor</h1>
-    <p>Professional driveway and patio deep cleaning services in the Harrogate area. Restoring surfaces to look like new.</p>
+    <p>Professional driveway and patio deep cleaning services in Chichester &amp; Surrounding Areas. Restoring surfaces to look like new.</p>
     <div class="hero-btns">
       <a class="btn-primary" href="tel:07568709828">&#128222; Call Us Now</a>
       <a class="btn-outline" href="#quote">Free Online Quote</a>
@@ -285,9 +278,15 @@
       <div class="form-group">
         <label>What service are you interested in? <span class="req">*</span></label>
         <div class="radio-group">
-          <label class="radio-item"><input type="radio" name="service" value="Jetwash"><span>Jetwash</span></label>
-          <label class="radio-item"><input type="radio" name="service" value="Jetwash + Resanding"><span>Jetwash + Resanding</span></label>
-          <label class="radio-item"><input type="radio" name="service" value="Jetwash + Chemical clean + Resanding"><span>Jetwash + Chemical clean + Resanding</span></label>
+          <div class="radio-item" onclick="document.getElementById('svc1').checked=true;document.querySelectorAll('.radio-item').forEach(function(el){el.style.borderColor='#c8e4f5';el.style.background='#fff'});this.style.borderColor='#69BDEB';this.style.background='#e3f4fc'">
+            <input type="radio" id="svc1" name="service" value="Jetwash">&nbsp;&nbsp;<span>Jetwash</span>
+          </div>
+          <div class="radio-item" onclick="document.getElementById('svc2').checked=true;document.querySelectorAll('.radio-item').forEach(function(el){el.style.borderColor='#c8e4f5';el.style.background='#fff'});this.style.borderColor='#69BDEB';this.style.background='#e3f4fc'">
+            <input type="radio" id="svc2" name="service" value="Jetwash + Resanding">&nbsp;&nbsp;<span>Jetwash + Resanding</span>
+          </div>
+          <div class="radio-item" onclick="document.getElementById('svc3').checked=true;document.querySelectorAll('.radio-item').forEach(function(el){el.style.borderColor='#c8e4f5';el.style.background='#fff'});this.style.borderColor='#69BDEB';this.style.background='#e3f4fc'">
+            <input type="radio" id="svc3" name="service" value="Jetwash + Chemical clean + Resanding">&nbsp;&nbsp;<span>Jetwash + Chemical clean + Resanding</span>
+          </div>
         </div>
       </div>
       <div class="form-section-heading">Address</div>
@@ -461,13 +460,4 @@
       document.getElementById('formSuccess').scrollIntoView({ behavior: 'smooth', block: 'center' });
     }, function() {
       var mailtoBody = encodeURIComponent(body);
-      window.location.href = 'mailto:tddchichester@gmail.com?subject=' +
-        encodeURIComponent('Free Quote Request – ' + firstName + ' ' + lastName) +
-        '&body=' + mailtoBody;
-      btn.disabled = false;
-      btn.textContent = 'Send →';
-    });
-  }
-</script>
-</body>
-</html>
+      window.location.href = 'mailto:tdd
