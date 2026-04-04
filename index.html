@@ -106,7 +106,7 @@
   .radio-item:hover { border-color: #69BDEB; background: #f0f9fe; }
   .radio-item input[type="radio"] { width: 18px; height: 18px; flex-shrink: 0; accent-color: #69BDEB; cursor: pointer; }
   .radio-item:has(input:checked) { border-color: #69BDEB; background: #e3f4fc; }
-  .radio-item span { font-size: 0.9rem; color: #3a5068; font-weight: 600; }
+  .radio-item span { font-size: 0.9rem; color: #3a5068; font-weight: 600; margin-left: -6px; }
   .file-upload { width: 100%; padding: 0.65rem 0.9rem; border: 1.5px dashed #69BDEB; border-radius: 8px; font-family: 'Nunito', sans-serif; font-size: 0.9rem; color: #4a5568; background: #fff; cursor: pointer; }
   .submit-btn { width: 100%; background: #69BDEB; color: #fff; border: none; padding: 1rem; border-radius: 8px; font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 800; cursor: pointer; margin-top: 1.5rem; transition: background 0.2s; letter-spacing: 0.5px; }
   .submit-btn:hover { background: #4faad6; }
@@ -224,7 +224,7 @@
         <div class="service-body">
           <h3>Jet Wash</h3>
           <p>Professional high-pressure cleaning to remove dirt, grime, moss, and algae. Ideal for patios, paving slabs and walls.</p>
-          <div class="pricing-tag">From <span class="price-main">£3 per m²</span> <span class="price-callout">+ £120 callout fee</span></div>
+          <div class="pricing-tag">From <span class="price-main">£3 per m²</span> <span class="price-callout">+ callout fee</span></div>
         </div>
       </div>
       <div class="service-card">
@@ -232,7 +232,7 @@
         <div class="service-body">
           <h3>Jet Wash &amp; Resanding</h3>
           <p>Deep clean followed by resanding joints for a smooth, stable finish. Ideal for block paving.</p>
-          <div class="pricing-tag">From <span class="price-main">£4 per m²</span> <span class="price-callout">+ £120 callout fee</span></div>
+          <div class="pricing-tag">From <span class="price-main">£4 per m²</span> <span class="price-callout">+ callout fee</span></div>
         </div>
       </div>
       <div class="service-card">
@@ -240,7 +240,7 @@
         <div class="service-body">
           <h3>Jet Wash, Chemical Treatment &amp; Resanding</h3>
           <p>Comprehensive service with chemical treatment for stubborn stains and algae. Transforms driveways back to new.</p>
-          <div class="pricing-tag">From <span class="price-main">£5 per m²</span> <span class="price-callout">+ £120 callout fee</span></div>
+          <div class="pricing-tag">From <span class="price-main">£5 per m²</span> <span class="price-callout">+ callout fee</span></div>
         </div>
       </div>
     </div>
@@ -329,8 +329,13 @@
       </div>
       <div class="form-group">
         <label>Add images of what needs doing <span class="req">*</span></label>
-        <input type="file" class="file-upload" id="images" accept="image/*" multiple required>
-        <p style="font-size:0.78rem;color:#888;margin-top:0.4rem;">You can select multiple images. Accepted formats: JPG, PNG, HEIC, WEBP.</p>
+        <div id="cloudinary-widget-area">
+          <button type="button" id="upload-btn" onclick="openUploadWidget()" style="width:100%;padding:0.65rem 0.9rem;border:1.5px dashed #69BDEB;border-radius:8px;background:#fff;font-family:'Nunito',sans-serif;font-size:0.9rem;color:#4a5568;cursor:pointer;text-align:left;">
+            📎 Click to upload images (JPG, PNG, HEIC, WEBP)
+          </button>
+          <div id="uploaded-images-list" style="margin-top:0.5rem;display:flex;flex-wrap:wrap;gap:0.5rem;"></div>
+          <p id="upload-status" style="font-size:0.78rem;color:#888;margin-top:0.4rem;">No images uploaded yet.</p>
+        </div>
       </div>
       <button type="button" class="submit-btn" id="submitBtn" onclick="handleSubmit()">Send &rarr;</button>
       <div class="form-success" id="formSuccess">
@@ -385,18 +390,71 @@
       <strong style="color:#69BDEB;">Email:</strong> <a href="mailto:tddchichester@gmail.com" style="color:#69BDEB;">tddchichester@gmail.com</a><br>
       <strong style="color:#69BDEB;">Phone:</strong> -
     </div>
-    <div class="footer-copy">&copy; 2025 The Driveway Doctor. All rights reserved.</div>
+    <div class="footer-copy">&copy; 2026 The Driveway Doctor. All rights reserved.</div>
   </div>
 </footer>
 
-<script>
-  (function(){
-    var s = document.createElement('script');
-    s.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
-    s.onload = function(){ emailjs.init({ publicKey: 'GZKwrsltNRbfM-P2B' }); };
-    document.head.appendChild(s);
-  })();
+<!-- Cloudinary Upload Widget -->
+<script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
 
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+  emailjs.init('GZKwrsltNRbfM-P2B');
+
+  /* ── Cloudinary upload widget ── */
+  var uploadedImageUrls = [];
+
+  var myWidget = cloudinary.createUploadWidget({
+    cloudName:    'dhi951hqy',
+    uploadPreset: 'driveway_doctor',
+    multiple:     true,
+    maxFiles:     10,
+    resourceType: 'image',
+    clientAllowedFormats: ['jpg','jpeg','png','heic','webp'],
+    showPoweredBy: false,
+    styles: {
+      palette: {
+        window:      '#FFFFFF',
+        windowBorder:'#69BDEB',
+        tabIcon:     '#69BDEB',
+        menuIcons:   '#69BDEB',
+        textDark:    '#1a2e3b',
+        textLight:   '#FFFFFF',
+        link:        '#69BDEB',
+        action:      '#69BDEB',
+        inactiveTabIcon: '#8a9db5',
+        error:       '#e24b4a',
+        inProgress:  '#69BDEB',
+        complete:    '#1d8348',
+        sourceBg:    '#f4f9fd'
+      }
+    }
+  }, function(error, result) {
+    if (!error && result && result.event === 'success') {
+      var url = result.info.secure_url;
+      uploadedImageUrls.push(url);
+
+      /* Show thumbnail preview */
+      var list = document.getElementById('uploaded-images-list');
+      var thumb = document.createElement('div');
+      thumb.style.cssText = 'position:relative;width:72px;height:72px;border-radius:6px;overflow:hidden;border:1.5px solid #d0eaf8;';
+      thumb.innerHTML = '<img src="' + url + '" style="width:100%;height:100%;object-fit:cover;">';
+      list.appendChild(thumb);
+
+      /* Update status text */
+      document.getElementById('upload-status').textContent =
+        uploadedImageUrls.length + ' image' + (uploadedImageUrls.length > 1 ? 's' : '') + ' uploaded.';
+      document.getElementById('upload-status').style.color = '#1d8348';
+    }
+  });
+
+  function openUploadWidget() {
+    myWidget.open();
+  }
+
+  /* ── Form submit ── */
   function handleSubmit() {
     var firstName = document.getElementById('firstName').value.trim();
     var lastName  = document.getElementById('lastName').value.trim();
@@ -410,54 +468,53 @@
     var postcode  = document.getElementById('postcode').value.trim();
     var date      = document.getElementById('preferredDate').value;
     var location  = document.getElementById('location').value.trim();
-    var images    = document.getElementById('images').files;
 
-    if (!firstName)          { alert('Please enter your first name.');              return; }
-    if (!lastName)           { alert('Please enter your last name.');               return; }
-    if (!email)              { alert('Please enter your email address.');           return; }
-    if (!serviceEl)          { alert('Please select a service.');                   return; }
-    if (!address1)           { alert('Please enter your address.');                 return; }
-    if (!city)               { alert('Please enter your city or town.');            return; }
-    if (!postcode)           { alert('Please enter your postcode.');                return; }
-    if (!location)           { alert('Please tell us where you\'d like cleaning.'); return; }
-    if (images.length === 0) { alert('Please add at least one image.');             return; }
+    if (!firstName)                  { alert('Please enter your first name.');              return; }
+    if (!lastName)                   { alert('Please enter your last name.');               return; }
+    if (!email)                      { alert('Please enter your email address.');           return; }
+    if (!serviceEl)                  { alert('Please select a service.');                   return; }
+    if (!address1)                   { alert('Please enter your address.');                 return; }
+    if (!city)                       { alert('Please enter your city or town.');            return; }
+    if (!postcode)                   { alert('Please enter your postcode.');                return; }
+    if (!location)                   { alert('Please tell us where you\'d like cleaning.'); return; }
+    if (uploadedImageUrls.length === 0) { alert('Please upload at least one image.');      return; }
 
     var btn = document.getElementById('submitBtn');
     btn.disabled = true;
-    btn.textContent = 'Sending…';
+    btn.textContent = 'Sending\u2026';
 
-    var body = [
-      'NEW FREE QUOTE REQUEST',
-      '──────────────────────',
-      'Name:    ' + firstName + ' ' + lastName,
-      'Email:   ' + email,
-      'Phone:   ' + (phone || '—'),
-      '',
-      'Service: ' + serviceEl.value,
-      '',
-      'Address:',
-      '  ' + address1,
-      address2 ? '  ' + address2 : null,
-      '  ' + city + ', ' + postcode,
-      '  ' + (country || 'United Kingdom'),
-      '',
-      'Preferred date: ' + (date || 'Not specified'),
-      '',
-      'Where needs cleaning:',
-      location,
-      '',
-      '(Images cannot be forwarded via EmailJS — please reply to the customer to request them.)',
-    ].filter(function(l){ return l !== null; }).join('\n');
+    /* Build image links string for the email */
+    var imagesText = uploadedImageUrls.map(function(url, i) {
+      return 'Image ' + (i + 1) + ': ' + url;
+    }).join('\n');
 
     emailjs.send('service_j7i9kda', 'template_nutkvri', {
-      to_email:  'tddchichester@gmail.com',
-      from_name: firstName + ' ' + lastName,
-      reply_to:  email,
-      subject:   'Free Quote Request – ' + firstName + ' ' + lastName,
-      message:   body,
+      from_name:      firstName + ' ' + lastName,
+      reply_to:       email,
+      subject:        'Free Quote Request - ' + firstName + ' ' + lastName,
+      first_name:     firstName,
+      last_name:      lastName,
+      email:          email,
+      phone:          phone || '—',
+      service:        serviceEl.value,
+      country:        country || 'United Kingdom',
+      address1:       address1,
+      address2:       address2 || '—',
+      city:           city,
+      postcode:       postcode,
+      preferred_date: date || 'Not specified',
+      job_details:    location,
+      images:         imagesText
     }).then(function() {
       document.getElementById('formSuccess').style.display = 'block';
       document.getElementById('formSuccess').scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }, function() {
-      var mailtoBody = encodeURIComponent(body);
-      window.location.href = 'mailto:tdd
+    }, function(err) {
+      console.error('EmailJS error:', err);
+      btn.disabled = false;
+      btn.textContent = 'Send \u2192';
+      alert('Something went wrong. Please try again or email us directly at tddchichester@gmail.com');
+    });
+  }
+</script>
+</body>
+</html>
