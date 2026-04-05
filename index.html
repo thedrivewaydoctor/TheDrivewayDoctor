@@ -123,6 +123,22 @@
   .badge .amount { font-size: 2.8rem; font-weight: 900; color: #fff; }
   .badge .label { font-size: 0.8rem; color: rgba(255,255,255,0.85); margin-top: 0.25rem; font-weight: 600; }
 
+  /* REVIEWS MARQUEE */
+  .reviews-section { background: #f4f9fd; padding: 3.5rem 0; overflow: hidden; }
+  .reviews-section .section-header { text-align: center; padding: 0 2rem 2rem; }
+  .reviews-track-wrapper { overflow: hidden; width: 100%; }
+  .reviews-track { display: flex; gap: 1.5rem; width: max-content; animation: marquee 40s linear infinite; }
+  .reviews-track:hover { animation-play-state: paused; }
+  @keyframes marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .review-card { background: #fff; border: 1.5px solid #d0eaf8; border-radius: 14px; padding: 1.5rem 1.75rem; width: 320px; flex-shrink: 0; display: flex; flex-direction: column; gap: 0.75rem; }
+  .review-stars { color: #f5a623; font-size: 1.15rem; letter-spacing: 2px; }
+  .review-name { font-size: 0.9rem; font-weight: 800; color: #1a2e3b; }
+  .review-location { font-size: 0.8rem; font-weight: 600; color: #69BDEB; }
+  .review-text { font-size: 0.87rem; color: #4a5568; line-height: 1.65; }
+
   /* ABOUT */
   .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
   @media (max-width: 640px) { .about-grid { grid-template-columns: 1fr; } }
@@ -146,6 +162,7 @@
   <img class="nav-logo-img" src="https://i.postimg.cc/76n6y8JJ/The-driveway-doctor-logo.png" alt="The Driveway Doctor">
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
+    <li><a href="#reviews">Reviews</a></li>
     <li><a href="#quote">Free Quote</a></li>
     <li><a href="#about">About Us</a></li>
     <li><a href="#gallery">Before &amp; After</a></li>
@@ -162,8 +179,7 @@
     <h1>The Driveway Doctor</h1>
     <p>Professional driveway and patio deep cleaning services in Chichester &amp; Surrounding Areas. Restoring surfaces to look like new.</p>
     <div class="hero-btns">
-      <a class="btn-primary" href="tel:00000">&#128222; Call Us Now</a>
-      <a class="btn-outline" href="#quote">Free Online Quote</a>
+      <a class="btn-primary" href="#quote">Free Online Quote</a>
     </div>
   </div>
 </section>
@@ -272,7 +288,7 @@
       </div>
       <div class="form-group">
         <label>Phone</label>
-        <input type="tel" id="phone" placeholder="07700 000000">
+        <input type="tel" id="phone" placeholder="07700 000000" oninput="this.value=this.value.replace(/[^0-9+\s]/g,'')">
       </div>
       <div class="form-section-heading">Services Required</div>
       <div class="form-group">
@@ -341,6 +357,72 @@
       <div class="form-success" id="formSuccess">
         &#10003;&nbsp; Thank you! Your quote request has been sent.<br>We'll be in touch shortly.
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews-section" id="reviews">
+  <div class="section-header">
+    <div class="section-label">What Our Customers Say</div>
+    <h2 class="section-title">Reviews</h2>
+  </div>
+  <div class="reviews-track-wrapper">
+    <div class="reviews-track" id="reviewsTrack">
+
+      <!-- Card 1 -->
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div><span class="review-name">Sue</span> &nbsp;<span class="review-location">Selsey</span></div>
+        <p class="review-text">I'd been wanting to get my driveway replaced for a few months, but couldn't justify the price, and was advised by a friend to just get it cleaned instead. They recommended The Driveway Doctor, so I got in touch. They got back to me next day with a quote, in which I was happy to proceed with their very reasonable pricing. The boys arrived with their gear and got straight to work, very friendly and talkative. When I went to see the results, WOW! I thought they had replaced the entire drive in under a day! If your in need of a new driveway/clean, do not hesitate. These boys are the best at what they do.</p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div><span class="review-name">Andy</span> &nbsp;<span class="review-location">Selsey</span></div>
+        <p class="review-text">The lads at The Driveway Doctor were superb. They completely transformed my patio which hadn't been cleaned in almost 10 years, making it look brand new. They used top quality chemicals removing all the moss and black spots which just would not budge when I tried myself. Very reasonable pricing, I couldn't recommend more.</p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div><span class="review-name">Emma</span> &nbsp;<span class="review-location">Selsey</span></div>
+        <p class="review-text">I heard from a friend about The Driveway Doctor, and needed my dad's driveway doing up, so gave them a shot — and oh boy they didn't disappoint. They were very friendly, and explained the entire process to my dad (who was a bit concerned at first putting chemicals on a 20 year old driveway) and brought the drive back to brand new.</p>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div><span class="review-name">Tommy</span> &nbsp;<span class="review-location">Selsey</span></div>
+        <p class="review-text">The boys did a great job, got rid of all the algae and everything else. Driveway looks spotless. Would also recommend the sanding package highly. Can't complain with the pricing with what your getting honestly. 5 stars from me.</p>
+      </div>
+
+      <!-- Duplicate set for seamless infinite loop -->
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div><span class="review-name">Sue</span> &nbsp;<span class="review-location">Selsey</span></div>
+        <p class="review-text">I'd been wanting to get my driveway replaced for a few months, but couldn't justify the price, and was advised by a friend to just get it cleaned instead. They recommended The Driveway Doctor, so I got in touch. They got back to me next day with a quote, in which I was happy to proceed with their very reasonable pricing. The boys arrived with their gear and got straight to work, very friendly and talkative. When I went to see the results, WOW! I thought they had replaced the entire drive in under a day! If your in need of a new driveway/clean, do not hesitate. These boys are the best at what they do.</p>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div><span class="review-name">Andy</span> &nbsp;<span class="review-location">Selsey</span></div>
+        <p class="review-text">The lads at The Driveway Doctor were superb. They completely transformed my patio which hadn't been cleaned in almost 10 years, making it look brand new. They used top quality chemicals removing all the moss and black spots which just would not budge when I tried myself. Very reasonable pricing, I couldn't recommend more.</p>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div><span class="review-name">Emma</span> &nbsp;<span class="review-location">Selsey</span></div>
+        <p class="review-text">I heard from a friend about The Driveway Doctor, and needed my dad's driveway doing up, so gave them a shot — and oh boy they didn't disappoint. They were very friendly, and explained the entire process to my dad (who was a bit concerned at first putting chemicals on a 20 year old driveway) and brought the drive back to brand new.</p>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div><span class="review-name">Tommy</span> &nbsp;<span class="review-location">Selsey</span></div>
+        <p class="review-text">The boys did a great job, got rid of all the algae and everything else. Driveway looks spotless. Would also recommend the sanding package highly. Can't complain with the pricing with what your getting honestly. 5 stars from me.</p>
+      </div>
+
     </div>
   </div>
 </section>
@@ -477,6 +559,8 @@
     if (!firstName)                     { alert('Please enter your first name.');              return; }
     if (!lastName)                      { alert('Please enter your last name.');               return; }
     if (!email)                         { alert('Please enter your email address.');           return; }
+    var emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (!emailValid)                    { alert('Please enter a valid email address (e.g. name@example.com).'); return; }
     if (!serviceEl)                     { alert('Please select a service.');                   return; }
     if (!address1)                      { alert('Please enter your address.');                 return; }
     if (!city)                          { alert('Please enter your city or town.');            return; }
