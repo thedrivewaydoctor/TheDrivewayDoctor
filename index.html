@@ -129,6 +129,7 @@
   .reviews-track-wrapper { overflow: hidden; width: 100%; }
   .reviews-track { display: flex; gap: 1.5rem; width: max-content; animation: marquee 40s linear infinite; }
   .reviews-track:hover { animation-play-state: paused; }
+  .reviews-track.paused { animation-play-state: paused; }
   @keyframes marquee {
     0%   { transform: translateX(0); }
     100% { transform: translateX(-50%); }
@@ -425,6 +426,12 @@
 
     </div>
   </div>
+  <!-- Mobile pause/play button — shown only on phones -->
+  <div id="reviewsPauseBtnWrap" style="display:none;justify-content:center;margin-top:1.25rem;">
+    <button id="reviewsPauseBtn" aria-label="Pause reviews" style="background:none;border:2px solid #69BDEB;border-radius:50%;width:44px;height:44px;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="#69BDEB"><rect x="5" y="3" width="4" height="18"/><rect x="15" y="3" width="4" height="18"/></svg>
+    </button>
+  </div>
 </section>
 
 <!-- REFERRAL -->
@@ -495,6 +502,25 @@
   })();
 
   emailjs.init('GZKwrsltNRbfM-P2B');
+
+  /* Mobile play/pause button for reviews — only show on small screens */
+  var track = document.getElementById('reviewsTrack');
+  var pauseBtn = document.getElementById('reviewsPauseBtn');
+  var pauseWrap = document.getElementById('reviewsPauseBtnWrap');
+  var isPaused = false;
+  if(window.innerWidth <= 660 && pauseWrap){ pauseWrap.style.display = 'flex'; }
+  window.addEventListener('resize', function(){
+    if(pauseWrap){ pauseWrap.style.display = window.innerWidth <= 660 ? 'flex' : 'none'; }
+  });
+  if(pauseBtn){
+    pauseBtn.addEventListener('click', function(){
+      isPaused = !isPaused;
+      track.classList.toggle('paused', isPaused);
+      pauseBtn.innerHTML = isPaused
+        ? '<svg viewBox="0 0 24 24" width="22" height="22" fill="#69BDEB"><polygon points="5,3 19,12 5,21"/></svg>'
+        : '<svg viewBox="0 0 24 24" width="22" height="22" fill="#69BDEB"><rect x="5" y="3" width="4" height="18"/><rect x="15" y="3" width="4" height="18"/></svg>';
+    });
+  }
 
   var uploadedImageUrls = [];
 
