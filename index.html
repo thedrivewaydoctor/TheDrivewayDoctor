@@ -359,11 +359,14 @@
       <div class="form-group">
         <label>Do you have an outside/inside tap we could use? <span class="req">*</span></label>
         <div class="radio-group">
-          <div class="radio-item" onclick="document.getElementById('tap_yes').checked=true;this.parentNode.querySelectorAll('.radio-item').forEach(function(el){el.style.borderColor='#c8e4f5';el.style.background='#fff'});this.style.borderColor='#69BDEB';this.style.background='#e3f4fc'">
-            <input type="radio" id="tap_yes" name="tap" value="Yes" class="tap-opt">&nbsp;&nbsp;<span>Yes</span>
+          <div class="radio-item" onclick="document.getElementById('tap_outside').checked=true;this.parentNode.querySelectorAll('.radio-item').forEach(function(el){el.style.borderColor='#c8e4f5';el.style.background='#fff'});this.style.borderColor='#69BDEB';this.style.background='#e3f4fc'">
+            <input type="radio" id="tap_outside" name="tap" value="Outside Tap" class="tap-opt">&nbsp;&nbsp;<span>Outside Tap</span>
           </div>
-          <div class="radio-item" onclick="document.getElementById('tap_no').checked=true;this.parentNode.querySelectorAll('.radio-item').forEach(function(el){el.style.borderColor='#c8e4f5';el.style.background='#fff'});this.style.borderColor='#69BDEB';this.style.background='#e3f4fc'">
-            <input type="radio" id="tap_no" name="tap" value="No" class="tap-opt">&nbsp;&nbsp;<span>No</span>
+          <div class="radio-item" onclick="document.getElementById('tap_inside').checked=true;this.parentNode.querySelectorAll('.radio-item').forEach(function(el){el.style.borderColor='#c8e4f5';el.style.background='#fff'});this.style.borderColor='#69BDEB';this.style.background='#e3f4fc'">
+            <input type="radio" id="tap_inside" name="tap" value="Inside Tap" class="tap-opt">&nbsp;&nbsp;<span>Inside Tap</span>
+          </div>
+          <div class="radio-item" onclick="document.getElementById('tap_none').checked=true;this.parentNode.querySelectorAll('.radio-item').forEach(function(el){el.style.borderColor='#c8e4f5';el.style.background='#fff'});this.style.borderColor='#69BDEB';this.style.background='#e3f4fc'">
+            <input type="radio" id="tap_none" name="tap" value="No Tap" class="tap-opt">&nbsp;&nbsp;<span>No Tap</span>
           </div>
         </div>
       </div>
