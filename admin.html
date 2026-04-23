@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin | The Driveway Doctor</title>
+<link rel="icon" type="image/png" href="https://i.postimg.cc/76n6y8JJ/The-driveway-doctor-logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Nunito', sans-serif; background: #f4f9fd; min-height: 100vh; padding: 3rem 1.5rem; }
+  .container { max-width: 560px; margin: 0 auto; }
+  .logo { width: 80px; height: auto; display: block; margin: 0 auto 1.5rem; }
+  h1 { font-size: 1.5rem; font-weight: 900; color: #1a2e3b; text-align: center; margin-bottom: 0.4rem; }
+  .sub { text-align: center; color: #4a5568; font-size: 0.9rem; margin-bottom: 2.5rem; }
+  .card { background: #fff; border: 1.5px solid #d0eaf8; border-radius: 16px; padding: 2rem; box-shadow: 0 4px 20px rgba(26,46,59,0.08); }
+  .card h2 { font-size: 1rem; font-weight: 900; color: #1a2e3b; margin-bottom: 1.25rem; }
+  label { display: block; font-size: 0.83rem; font-weight: 700; color: #1a2e3b; margin-bottom: 0.4rem; }
+  input[type="text"] { width: 100%; padding: 0.7rem 0.9rem; border: 1.5px solid #c8e4f5; border-radius: 8px; font-family: 'Nunito', sans-serif; font-size: 0.9rem; color: #1a2e3b; outline: none; transition: border-color 0.2s; margin-bottom: 1.25rem; }
+  input[type="text"]:focus { border-color: #69BDEB; box-shadow: 0 0 0 3px rgba(105,189,235,0.15); }
+  button.generate { width: 100%; background: #69BDEB; color: #fff; border: none; padding: 0.85rem; border-radius: 8px; font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 800; cursor: pointer; transition: background 0.2s; }
+  button.generate:hover { background: #4faad6; }
+  .result { display: none; margin-top: 1.5rem; background: #f4f9fd; border: 1.5px solid #d0eaf8; border-radius: 10px; padding: 1.25rem; }
+  .result-label { font-size: 0.78rem; font-weight: 800; color: #69BDEB; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .result-name { font-size: 0.95rem; font-weight: 800; color: #1a2e3b; margin-bottom: 0.75rem; }
+  .url-box { display: flex; gap: 0.5rem; align-items: center; }
+  .url-text { flex: 1; font-size: 0.8rem; color: #4a5568; background: #fff; border: 1.5px solid #c8e4f5; border-radius: 8px; padding: 0.6rem 0.8rem; word-break: break-all; font-family: 'Nunito', sans-serif; }
+  button.copy { background: #1a2e3b; color: #fff; border: none; padding: 0.6rem 1rem; border-radius: 8px; font-family: 'Nunito', sans-serif; font-size: 0.83rem; font-weight: 800; cursor: pointer; white-space: nowrap; transition: background 0.2s; }
+  button.copy:hover { background: #2d4a62; }
+  button.copy.copied { background: #1d8348; }
+  .logout { display: block; text-align: center; margin-top: 2rem; font-size: 0.83rem; color: #4a5568; font-weight: 700; cursor: pointer; text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="container">
+  <img class="logo" src="https://i.postimg.cc/76n6y8JJ/The-driveway-doctor-logo.png" alt="The Driveway Doctor">
+  <h1>Admin Panel</h1>
+  <p class="sub">The Driveway Doctor &mdash; Internal Use Only</p>
+
+  <div class="card">
+    <h2>Create Review Link</h2>
+    <label for="clientName">Client's First Name</label>
+    <input type="text" id="clientName" placeholder="e.g. Sarah" onkeydown="if(event.key==='Enter')generate()">
+    <button class="generate" onclick="generate()">Generate Link &rarr;</button>
+
+    <div class="result" id="result">
+      <div class="result-label">Review Link Generated</div>
+      <div class="result-name" id="resultName"></div>
+      <div class="url-box">
+        <div class="url-text" id="urlDisplay"></div>
+        <button class="copy" id="copyBtn" onclick="copyUrl()">Copy</button>
+      </div>
+    </div>
+  </div>
+
+  <span class="logout" onclick="logout()">Log out</span>
+</div>
+
+<script>
+  // Guard: redirect to login if not authenticated
+  if (sessionStorage.getItem('tdd_admin') !== 'true') {
+    window.location.href = '/login.html';
+  }
+
+  function generate() {
+    var name = document.getElementById('clientName').value.trim();
+    if (!name) { alert('Please enter a client name.'); return; }
+
+    // Encode name to base64 to obscure it in URL
+    var encoded = btoa(unescape(encodeURIComponent(name)));
+    // Add a short random token so each link is unique
+    var token = Math.random().toString(36).substring(2, 8);
+    var url = 'https://tddchichester.co.uk/review.html?c=' + encoded + '&t=' + token;
+
+    document.getElementById('resultName').textContent = 'For: ' + name;
+    document.getElementById('urlDisplay').textContent = url;
+    document.getElementById('result').style.display = 'block';
+
+    // Reset copy button
+    var btn = document.getElementById('copyBtn');
+    btn.textContent = 'Copy';
+    btn.classList.remove('copied');
+  }
+
+  function copyUrl() {
+    var url = document.getElementById('urlDisplay').textContent;
+    navigator.clipboard.writeText(url).then(function() {
+      var btn = document.getElementById('copyBtn');
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(function() {
+        btn.textContent = 'Copy';
+        btn.classList.remove('copied');
+      }, 2500);
+    });
+  }
+
+  function logout() {
+    sessionStorage.removeItem('tdd_admin');
+    window.location.href = '/login.html';
+  }
+</script>
+</body>
+</html>

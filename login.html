@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Login | The Driveway Doctor</title>
+<link rel="icon" type="image/png" href="https://i.postimg.cc/76n6y8JJ/The-driveway-doctor-logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Nunito', sans-serif; background: #f4f9fd; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+  .card { background: #fff; border: 1.5px solid #d0eaf8; border-radius: 16px; padding: 2.5rem 2rem; width: 100%; max-width: 380px; box-shadow: 0 8px 32px rgba(26,46,59,0.1); text-align: center; }
+  .logo { width: 90px; height: auto; margin: 0 auto 1.5rem; display: block; }
+  h1 { font-size: 1.3rem; font-weight: 900; color: #1a2e3b; margin-bottom: 0.4rem; }
+  p { font-size: 0.87rem; color: #4a5568; margin-bottom: 1.75rem; }
+  label { display: block; text-align: left; font-size: 0.83rem; font-weight: 700; color: #1a2e3b; margin-bottom: 0.4rem; }
+  input[type="password"] { width: 100%; padding: 0.7rem 0.9rem; border: 1.5px solid #c8e4f5; border-radius: 8px; font-family: 'Nunito', sans-serif; font-size: 0.9rem; color: #1a2e3b; outline: none; transition: border-color 0.2s; margin-bottom: 1.25rem; }
+  input[type="password"]:focus { border-color: #69BDEB; box-shadow: 0 0 0 3px rgba(105,189,235,0.15); }
+  button { width: 100%; background: #69BDEB; color: #fff; border: none; padding: 0.85rem; border-radius: 8px; font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 800; cursor: pointer; transition: background 0.2s; }
+  button:hover { background: #4faad6; }
+  .error { display: none; color: #c0392b; font-size: 0.83rem; font-weight: 700; margin-top: 0.75rem; }
+</style>
+</head>
+<body>
+<div class="card">
+  <img class="logo" src="https://i.postimg.cc/76n6y8JJ/The-driveway-doctor-logo.png" alt="The Driveway Doctor">
+  <h1>Admin Login</h1>
+  <p>This page is for internal use only.</p>
+  <label for="pwd">Password</label>
+  <input type="password" id="pwd" placeholder="Enter password" onkeydown="if(event.key==='Enter')login()">
+  <button onclick="login()">Login &rarr;</button>
+  <div class="error" id="err">Incorrect password. Please try again.</div>
+</div>
+<script>
+  function login() {
+    var pwd = document.getElementById('pwd').value;
+    if (pwd === 'tdd123!') {
+      sessionStorage.setItem('tdd_admin', 'true');
+      window.location.href = '/admin.html';
+    } else {
+      document.getElementById('err').style.display = 'block';
+      document.getElementById('pwd').value = '';
+      document.getElementById('pwd').focus();
+    }
+  }
+</script>
+</body>
+</html>
