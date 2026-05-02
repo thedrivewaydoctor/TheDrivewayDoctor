@@ -248,7 +248,7 @@
         </div>
       </div>
       <div class="service-card">
-        <div class="service-img"><img src="https://i.postimg.cc/sD9NRFYH/IMG-0932.jpg" alt="Jet Wash and Chemical Treatment" loading="lazy"></div>
+        <div class="service-img"><img src="https://i.postimg.cc/ZKqHkrS0/IMG-1214.webp" alt="Jet Wash and Chemical Treatment" loading="lazy"></div>
         <div class="service-body">
           <h3>Jet Wash &amp; Chemical Treatment</h3>
           <span style="display:inline-block;align-self:flex-start;font-size:0.78rem;background:#69BDEB;color:#fff;padding:0.2rem 0.6rem;border-radius:4px;font-weight:800;margin-bottom:0.6rem;">Recommended</span>
@@ -373,18 +373,7 @@
           <p id="upload-status" style="font-size:0.78rem;color:#888;margin-top:0.4rem;">No images uploaded yet.</p>
         </div>
       </div>
-      <div class="form-section-heading">Extras</div>
-      <div class="form-group">
-        <label>Priority Booking (+£10) — jump to the front of the queue</label>
-        <div class="radio-group">
-          <div class="radio-item" onclick="document.getElementById('priority_yes').checked=true;this.parentNode.querySelectorAll('.radio-item').forEach(function(el){el.style.borderColor='#c8e4f5';el.style.background='#fff'});this.style.borderColor='#69BDEB';this.style.background='#e3f4fc'">
-            <input type="radio" id="priority_yes" name="priority" value="Yes" class="priority-opt">&nbsp;&nbsp;<span>Yes</span>
-          </div>
-          <div class="radio-item" onclick="document.getElementById('priority_no').checked=true;this.parentNode.querySelectorAll('.radio-item').forEach(function(el){el.style.borderColor='#c8e4f5';el.style.background='#fff'});this.style.borderColor='#69BDEB';this.style.background='#e3f4fc'">
-            <input type="radio" id="priority_no" name="priority" value="No" class="priority-opt">&nbsp;&nbsp;<span>No</span>
-          </div>
-        </div>
-      </div>
+
 
       <button type="button" class="submit-btn" id="submitBtn" onclick="handleSubmit()">Send &rarr;</button>
       <div class="form-success" id="formSuccess">
@@ -674,7 +663,6 @@
     var phone     = document.getElementById('phone').value.trim();
     var serviceEl = document.querySelector('input[name="service"]:checked');
     var tapEl     = document.querySelector('input[name="tap"]:checked');
-    var priorityEl= document.querySelector('input[name="priority"]:checked');
     var country   = document.getElementById('country').value;
     var address1  = document.getElementById('address1').value.trim();
     var address2  = document.getElementById('address2').value.trim();
@@ -714,7 +702,6 @@
       phone:          phone || '-',
       service:        serviceEl.value,
       tap:            tapEl.value,
-      priority:       priorityEl ? priorityEl.value : 'No',
       country:        country || 'United Kingdom',
       address1:       address1,
       address2:       address2 || '-',
