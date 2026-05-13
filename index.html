@@ -169,6 +169,18 @@
   .ba-tag { position: absolute; top: 14px; font-size: 0.72rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: #fff; background: rgba(26,46,59,0.55); padding: 0.3rem 0.7rem; border-radius: 6px; pointer-events: none; }
   .ba-tag-before { left: 14px; }
   .ba-tag-after { right: 14px; }
+
+  /* FAQ */
+  .faq-section { padding: 4rem 2rem; background: #fff; }
+  .faq-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.75rem; }
+  .faq-item { border: 1.5px solid #d0eaf8; border-radius: 12px; overflow: hidden; }
+  .faq-question { width: 100%; background: none; border: none; padding: 1.1rem 1.25rem; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-family: 'Nunito', sans-serif; font-size: 0.97rem; font-weight: 800; color: #1a2e3b; text-align: left; gap: 1rem; }
+  .faq-question:hover { background: #f4f9fd; }
+  .faq-icon { flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; background: #69BDEB; display: flex; align-items: center; justify-content: center; transition: transform 0.25s; }
+  .faq-icon svg { width: 12px; height: 12px; stroke: #fff; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+  .faq-item.open .faq-icon { transform: rotate(180deg); }
+  .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.25s ease; padding: 0 1.25rem; font-size: 0.9rem; color: #4a5568; line-height: 1.75; }
+  .faq-item.open .faq-answer { max-height: 300px; padding: 0 1.25rem 1.1rem; }
 </style>
 </head>
 <body>
@@ -178,10 +190,11 @@
   <img class="nav-logo-img" src="https://i.postimg.cc/76n6y8JJ/The-driveway-doctor-logo.png" alt="The Driveway Doctor">
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
-    <li><a href="#reviews">Reviews</a></li>
     <li><a href="#quote">Free Quote</a></li>
-    <li><a href="#about">About Us</a></li>
+    <li><a href="#reviews">Reviews</a></li>
     <li><a href="#ba-slider">Before &amp; After</a></li>
+    <li><a href="#about">About Us</a></li>
+    <li><a href="#faq">FAQ</a></li>
   </ul>
   <a class="nav-cta" href="#quote">Free Quote</a>
 </nav>
@@ -456,7 +469,7 @@
 </section>
 
 <!-- BEFORE & AFTER SLIDER -->
-<div class="ba-slider-section">
+<div class="ba-slider-section" id="ba-slider">
   <div class="ba-slider-heading">Before &amp; <span>After</span></div>
   <div class="ba-slider-outer" id="baWrap">
     <!-- Before: base layer, full width, sets container height -->
@@ -537,17 +550,86 @@
   <div class="container">
     <div class="about-grid">
       <div class="about-img">
-        <img src="https://i.postimg.cc/YSR2qNnR/small-logo.png" alt="The Driveway Doctor team" loading="lazy">
+        <img src="https://i.postimg.cc/TPm0pXrB/image.png" alt="The Driveway Doctor team" loading="lazy" style="border-radius:20px;">
       </div>
       <div class="about-text">
         <div class="section-label">Get to Know Us</div>
         <h2 class="section-title">The Driveway Doctor</h2>
-        <p class="section-sub" style="margin-bottom:1.5rem;">We deliver professional pressure washing for homes and businesses. From driveways to patios, we restore every surface to look its best — providing a reliable service and spotless results every time.</p>
+        <p class="section-sub" style="margin-bottom:1.5rem;">We are a young group of lads, providing professional pressure washing services for both homes and businesses. After finishing school a few years ago we discovered a real passion for exterior cleaning and have since focused on building a reliable, high-quality service.<br><br>We specialise in all types of driveway and patio cleaning, using the right methods for each surface to ensure consistently excellent results and a finish our customers can be proud of.</p>
         <a class="btn-primary" style="background:#69BDEB;color:#fff;" href="#quote">Get a Free Quote</a>
       </div>
     </div>
   </div>
 </section>
+
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="container">
+    <div class="section-label" style="text-align:center;">FAQ</div>
+    <h2 class="section-title" style="text-align:center;margin-bottom:2rem;">Frequently Asked Questions</h2>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Do you bring your own water?
+          <span class="faq-icon"><svg viewBox="0 0 24 24"><polyline points="6,9 12,15 18,9"/></svg></span>
+        </button>
+        <div class="faq-answer">We currently require access to a mains water supply at the property, usually via an outdoor tap. We bring all required connectors to ensure compatibility with most standard fittings. If an outdoor tap isn't available, we can also connect via a suitable indoor tap, such as a kitchen sink, where needed.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          How do you price jobs?
+          <span class="faq-icon"><svg viewBox="0 0 24 24"><polyline points="6,9 12,15 18,9"/></svg></span>
+        </button>
+        <div class="faq-answer">We charge a fixed call-out fee of £80 per job, which covers setup, fuel, equipment and labour. We then charge per m² depending on the size of the area being cleaned.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Do you clean decking?
+          <span class="faq-icon"><svg viewBox="0 0 24 24"><polyline points="6,9 12,15 18,9"/></svg></span>
+        </button>
+        <div class="faq-answer">We are currently focusing on driveways and patios, so we are not taking on decking projects at this time.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Where are you based?
+          <span class="faq-icon"><svg viewBox="0 0 24 24"><polyline points="6,9 12,15 18,9"/></svg></span>
+        </button>
+        <div class="faq-answer">We are based in Selsey and also cover surrounding areas including The Witterings, Chichester and Bognor Regis.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Do you offer rust removal?
+          <span class="faq-icon"><svg viewBox="0 0 24 24"><polyline points="6,9 12,15 18,9"/></svg></span>
+        </button>
+        <div class="faq-answer">We currently do not provide specialist rust removal treatments. Certain rust removers can permanently affect some paving materials if incorrectly applied, so we only offer services we can guarantee to a high standard. We're happy to recommend trusted products or specialists where needed.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          What chemicals do you use and what do they do?
+          <span class="faq-icon"><svg viewBox="0 0 24 24"><polyline points="6,9 12,15 18,9"/></svg></span>
+        </button>
+        <div class="faq-answer">We use a diluted Sodium Hypochlorite solution (14–15%). We always recommend a chemical treatment alongside pressure washing, as it is highly effective at removing stubborn organic growth such as lichen and algae that cannot be removed by pressure alone. This helps achieve a deeper, longer-lasting clean.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  function toggleFaq(btn) {
+    var item = btn.closest('.faq-item');
+    var isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(function(el) { el.classList.remove('open'); });
+    if (!isOpen) item.classList.add('open');
+  }
+</script>
 
 <!-- FOOTER -->
 <footer>
@@ -720,6 +802,19 @@
       alert('Something went wrong. Please try again or email us at tddchichester@gmail.com');
     });
   }
+</script>
+
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      var target = document.querySelector(this.getAttribute('href'));
+      if (!target) return;
+      e.preventDefault();
+      var targetCenter = target.getBoundingClientRect().top + window.pageYOffset;
+      var offset = targetCenter - (window.innerHeight / 2) + (target.offsetHeight / 2);
+      window.scrollTo({ top: offset, behavior: 'smooth' });
+    });
+  });
 </script>
 </body>
 </html>
