@@ -180,6 +180,16 @@
   .faq-item.open .faq-icon { transform: rotate(180deg); }
   .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.25s ease; padding: 0 1.25rem; font-size: 0.9rem; color: #4a5568; line-height: 1.75; }
   .faq-item.open .faq-answer { max-height: 300px; padding: 0 1.25rem 1.1rem; }
+
+  /* POPUP */
+  .popup-overlay { position: fixed; inset: 0; background: rgba(26,46,59,0.55); z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 1.5rem; }
+  .popup-box { background: #fff; border-radius: 16px; padding: 2rem 1.75rem; max-width: 420px; width: 100%; box-shadow: 0 12px 40px rgba(26,46,59,0.2); text-align: center; }
+  .popup-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+  .popup-box h2 { font-size: 1.2rem; font-weight: 900; color: #1a2e3b; margin-bottom: 0.75rem; }
+  .popup-box p { font-size: 0.9rem; color: #4a5568; line-height: 1.75; margin-bottom: 1.5rem; }
+  .popup-box p a { color: #69BDEB; font-weight: 800; text-decoration: underline; }
+  .popup-btn { background: #69BDEB; color: #fff; border: none; padding: 0.85rem 2.5rem; border-radius: 8px; font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 800; cursor: pointer; transition: background 0.2s; }
+  .popup-btn:hover { background: #4faad6; }
 </style>
 </head>
 <body>
@@ -751,6 +761,31 @@
       window.scrollTo({ top: offset, behavior: 'smooth' });
     });
   });
+</script>
+
+<!-- PHONE NUMBER POPUP -->
+<div class="popup-overlay" id="phonePopup">
+  <div class="popup-box">
+    <div class="popup-icon">📞</div>
+    <h2>Our phone number has changed!</h2>
+    <p>Our old phone number will no longer be in use. Moving forward, for any enquiries, please call us on <a href="tel:07348645825">07348645825</a>.</p>
+    <button class="popup-btn" onclick="closePopup()">Okay!</button>
+  </div>
+</div>
+
+<script>
+  (function() {
+    if (document.cookie.split(';').some(function(c) { return c.trim().startsWith('tdd_phone_popup='); })) {
+      document.getElementById('phonePopup').style.display = 'none';
+    }
+  })();
+
+  function closePopup() {
+    document.getElementById('phonePopup').style.display = 'none';
+    var expires = new Date();
+    expires.setFullYear(expires.getFullYear() + 1);
+    document.cookie = 'tdd_phone_popup=seen; expires=' + expires.toUTCString() + '; path=/';
+  }
 </script>
 </body>
 </html>
