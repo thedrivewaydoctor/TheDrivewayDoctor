@@ -717,10 +717,6 @@
     btn.disabled = true;
     btn.textContent = 'Sending\u2026';
 
-    var imagesText = uploadedImageUrls.map(function(url, i) {
-      return 'Image ' + (i + 1) + ': ' + url;
-    }).join('\n');
-
     emailjs.send('service_j7i9kda', 'template_nutkvri', {
       from_name:      firstName + ' ' + lastName,
       reply_to:       email,
@@ -736,7 +732,6 @@
       address2:       address2 || '-',
       city:           city,
       postcode:       postcode,
-      preferred_date: date || 'Not specified',
       job_details:    location,
     }).then(function() {
       document.getElementById('formSuccess').style.display = 'block';
