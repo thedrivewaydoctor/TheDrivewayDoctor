@@ -191,6 +191,19 @@
   .popup-btn { background: #69BDEB; color: #fff; border: none; padding: 0.85rem 2.5rem; border-radius: 8px; font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 800; cursor: pointer; transition: background 0.2s; }
   .popup-btn:hover { background: #4faad6; }
 </style>
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '970538999187621');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=970538999187621&ev=PageView&noscript=1"/></noscript>
+<!-- End Facebook Pixel Code -->
 </head>
 <body>
 
@@ -204,6 +217,7 @@
     <li><a href="#ba-slider">Before &amp; After</a></li>
     <li><a href="#about">About Us</a></li>
     <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact">Contact Us</a></li>
   </ul>
   <a class="nav-cta" href="#quote">Free Quote</a>
 </nav>
@@ -218,6 +232,7 @@
     <p>Professional driveway and patio deep cleaning services in Chichester &amp; Surrounding Areas. Restoring surfaces to look like new.</p>
     <div class="hero-btns">
       <a class="btn-primary" href="#quote">Free Online Quote</a>
+      <a class="btn-primary" href="#contact" style="background:transparent;border:2px solid #fff;color:#fff;">Contact Us</a>
     </div>
   </div>
 </section>
@@ -545,13 +560,14 @@
   <div class="container">
     <div class="about-grid">
       <div class="about-img">
-        <img src="https://i.postimg.cc/TPm0pXrB/image.png" alt="The Driveway Doctor team" loading="lazy" style="border-radius:20px;">
+        <img src="https://i.postimg.cc/15SKTk61/image.png" alt="The Driveway Doctor team" loading="lazy" style="border-radius:20px;">
       </div>
       <div class="about-text">
         <div class="section-label">Get to Know Us</div>
         <h2 class="section-title">The Driveway Doctor</h2>
         <p class="section-sub" style="margin-bottom:1.5rem;">We are a young group of lads, providing professional pressure washing services for both homes and businesses. After finishing school a few years ago we discovered a real passion for exterior cleaning and have since focused on building a reliable, high-quality service.<br><br>We specialise in all types of driveway and patio cleaning, using the right methods for each surface to ensure consistently excellent results and a finish our customers can be proud of.</p>
         <a class="btn-primary" style="background:#69BDEB;color:#fff;" href="#quote">Get a Free Quote</a>
+        <a class="btn-primary" style="background:#fff;color:#69BDEB;border:2px solid #69BDEB;margin-top:0.75rem;" href="#contact">Contact Us</a>
       </div>
     </div>
   </div>
@@ -627,24 +643,48 @@
 </script>
 
 <!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <img class="footer-logo" src="https://i.postimg.cc/76n6y8JJ/The-driveway-doctor-logo.png" alt="The Driveway Doctor">
-    <div class="footer-links">
-      <a href="#services">Services</a>
-      <a href="#quote">Free Quote</a>
-      <a href="#about">About Us</a>
-      <a href="#ba-slider">Before &amp; After</a>
+<footer id="contact">
+  <div class="footer-inner" style="max-width:1100px;margin:0 auto;padding:3rem 2rem 1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start;">
+
+    <!-- Col 1: Logo + tagline + location -->
+    <div style="text-align:left;">
+      <img class="footer-logo" src="https://i.postimg.cc/76n6y8JJ/The-driveway-doctor-logo.png" alt="The Driveway Doctor" style="margin:0 0 1rem 0;">
+      <p style="color:#4a8aab;font-size:0.85rem;line-height:1.7;font-weight:600;">Professional driveway &amp; patio cleaning in Chichester &amp; surrounding areas.</p>
+      <div style="display:flex;align-items:center;gap:0.6rem;color:#4a8aab;font-size:0.88rem;font-weight:700;margin-top:1.25rem;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4a8aab" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Selsey, West Sussex
+      </div>
     </div>
-    <div class="footer-contact">
-      <strong style="color:#69BDEB;">Location:</strong> Chichester, West Sussex<br>
-      <strong style="color:#69BDEB;">Email:</strong> <span id="femail" style="color:#69BDEB;cursor:pointer;"></span><br>
-      <strong style="color:#69BDEB;">Phone:</strong> <a href="tel:07348645825" style="color:#69BDEB;text-decoration:underline;">07348645825</a>
+
+    <!-- Col 2: Contact -->
+    <div style="text-align:left;">
+      <p style="color:#fff;font-weight:900;font-size:0.9rem;margin-bottom:1rem;text-transform:uppercase;letter-spacing:1.5px;">Contact Us</p>
+      <div style="display:flex;flex-direction:column;gap:0.85rem;">
+        <a href="tel:07348645825" style="display:flex;align-items:center;gap:0.6rem;color:#69BDEB;text-decoration:none;font-size:0.88rem;font-weight:700;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#69BDEB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          07348645825
+        </a>
+        <a href="mailto:tddchichester@gmail.com" style="display:flex;align-items:center;gap:0.6rem;color:#69BDEB;text-decoration:none;font-size:0.88rem;font-weight:700;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#69BDEB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          tddchichester@gmail.com
+        </a>
+        <a href="https://www.instagram.com/tddchichester/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:0.6rem;color:#69BDEB;text-decoration:none;font-size:0.88rem;font-weight:700;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#69BDEB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          Instagram
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61590681710285" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:0.6rem;color:#69BDEB;text-decoration:none;font-size:0.88rem;font-weight:700;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#69BDEB" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+          Facebook
+        </a>
+      </div>
     </div>
-    <div style="margin:1rem auto 1rem;display:flex;justify-content:center;">
-      <a href="/login.html" style="font-size:0.75rem;color:#3a5068;text-decoration:none;font-weight:600;border:1px solid #3a5068;padding:0.3rem 0.8rem;border-radius:6px;opacity:0.6;">Login</a>
-    </div>
+
+  </div>
+
+  <!-- Bottom bar -->
+  <div style="border-top:1px solid #2d4a62;margin-top:2rem;padding:1.25rem 2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.75rem;max-width:1100px;margin-left:auto;margin-right:auto;">
     <div class="footer-copy">&copy; 2026 The Driveway Doctor. All rights reserved.</div>
+    <a href="/login.html" style="font-size:0.75rem;color:#3a5068;text-decoration:none;font-weight:600;border:1px solid #3a5068;padding:0.3rem 0.8rem;border-radius:6px;opacity:0.6;">Login</a>
   </div>
 </footer>
 
