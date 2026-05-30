@@ -79,10 +79,10 @@
       Back
     </button>
     <h2>Thank you so much!</h2>
-    <p>We're really glad you're happy with the result. If you'd like to share a few words about your experience, we'd love to hear them — or simply submit a 5 star rating below.</p>
+    <p id="highSubtext">We're really glad you're happy with the result. If you'd like to share a few words about your experience, we'd love to hear them — or simply submit your rating below.</p>
     <textarea id="highFeedback" placeholder="Share your experience (optional)..."></textarea>
     <button class="submit" id="highSubmitBtn" onclick="submitHigh()">Submit Review &rarr;</button>
-    <button class="submit-secondary" onclick="submitHighBlank()">Submit 5 Stars Only</button>
+    <button class="submit-secondary" id="highBlankBtn" onclick="submitHighBlank()">Submit 5 Stars Only</button>
   </div>
 
   <!-- Thank you screen (shared) -->
@@ -143,7 +143,11 @@
 
   function handleRating(rating) {
     hide('ratingScreen');
-    if (rating >= 4) { show('highScreen'); }
+    if (rating >= 4) {
+      document.getElementById('highSubtext').textContent = "We're really glad you're happy with the result. If you'd like to share a few words about your experience, we'd love to hear them — or simply submit your " + rating + " star rating below.";
+      document.getElementById('highBlankBtn').textContent = 'Submit ' + rating + ' Stars Only';
+      show('highScreen');
+    }
     else { show('lowScreen'); }
   }
 
@@ -201,8 +205,8 @@
   function submitHighBlank() {
     emailjs.send('service_j7i9kda', 'template_isdemkz', {
       client_name:  clientName,
-      star_rating:  '5 stars',
-      feedback:     '5 star rating — no written review.',
+      star_rating:  selectedRating + ' star' + (selectedRating > 1 ? 's' : ''),
+      feedback:     selectedRating + ' star rating — no written review.',
       submitted_at: new Date().toLocaleString('en-GB')
     });
     showThankyou('Thank you so much!', 'We really appreciate your support. It means the world to us and helps us continue doing what we love.');
