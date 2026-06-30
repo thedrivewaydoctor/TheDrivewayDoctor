@@ -195,7 +195,7 @@
       feedback:     feedback || 'No written review left.',
       submitted_at: new Date().toLocaleString('en-GB')
     }).then(function() {
-      showThankyou('Thank you so much!', 'We really appreciate your kind words. It means the world to us and helps us continue doing what we love.');
+      window.location.href = 'https://g.page/r/CTUvzMKAhhrUEBM/review';
     }, function() {
       btn.disabled = false; btn.textContent = 'Submit Review \u2192';
       alert('Something went wrong. Please try again.');
@@ -209,7 +209,7 @@
       feedback:     selectedRating + ' star rating — no written review.',
       submitted_at: new Date().toLocaleString('en-GB')
     });
-    showThankyou('Thank you so much!', 'We really appreciate your support. It means the world to us and helps us continue doing what we love.');
+    window.location.href = 'https://g.page/r/CTUvzMKAhhrUEBM/review';
   }
 </script>
 </body>
