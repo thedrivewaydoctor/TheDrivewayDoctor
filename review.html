@@ -73,18 +73,6 @@
   </div>
 
   <!-- 4-5 star screen -->
-  <div class="screen hidden" id="highScreen">
-    <button class="back-btn" onclick="goBack()">
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#4a5568" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15,18 9,12 15,6"/></svg>
-      Back
-    </button>
-    <h2>Thank you so much!</h2>
-    <p id="highSubtext">We're really glad you're happy with the result. If you'd like to share a few words about your experience, we'd love to hear them — or simply submit your rating below.</p>
-    <textarea id="highFeedback" placeholder="Share your experience (optional)..."></textarea>
-    <button class="submit" id="highSubmitBtn" onclick="submitHigh()">Submit Review &rarr;</button>
-    <button class="submit-secondary" id="highBlankBtn" onclick="submitHighBlank()">Submit 5 Stars Only</button>
-  </div>
-
   <!-- Thank you screen (shared) -->
   <div class="thankyou-screen hidden" id="thankyouScreen">
     <div class="tick">&#10003;</div>
@@ -142,13 +130,18 @@
   });
 
   function handleRating(rating) {
-    hide('ratingScreen');
     if (rating >= 4) {
-      document.getElementById('highSubtext').textContent = "We're really glad you're happy with the result. If you'd like to share a few words about your experience, we'd love to hear them — or simply submit your " + rating + " star rating below.";
-      document.getElementById('highBlankBtn').textContent = 'Submit ' + rating + ' Stars Only';
-      show('highScreen');
+      emailjs.send('service_j7i9kda', 'template_isdemkz', {
+        client_name:  clientName,
+        star_rating:  rating + ' star' + (rating > 1 ? 's' : ''),
+        feedback:     'Redirected to Google review page.',
+        submitted_at: new Date().toLocaleString('en-GB')
+      });
+      window.location.href = 'https://g.page/r/CTUvzMKAhhrUEBM/review';
+      return;
     }
-    else { show('lowScreen'); }
+    hide('ratingScreen');
+    show('lowScreen');
   }
 
   function goBack() {
@@ -185,32 +178,6 @@
     });
   }
 
-  function submitHigh() {
-    var feedback = document.getElementById('highFeedback').value.trim();
-    var btn = document.getElementById('highSubmitBtn');
-    btn.disabled = true; btn.textContent = 'Sending\u2026';
-    emailjs.send('service_j7i9kda', 'template_isdemkz', {
-      client_name:  clientName,
-      star_rating:  selectedRating + ' star' + (selectedRating > 1 ? 's' : ''),
-      feedback:     feedback || 'No written review left.',
-      submitted_at: new Date().toLocaleString('en-GB')
-    }).then(function() {
-      window.location.href = 'https://g.page/r/CTUvzMKAhhrUEBM/review';
-    }, function() {
-      btn.disabled = false; btn.textContent = 'Submit Review \u2192';
-      alert('Something went wrong. Please try again.');
-    });
-  }
-
-  function submitHighBlank() {
-    emailjs.send('service_j7i9kda', 'template_isdemkz', {
-      client_name:  clientName,
-      star_rating:  selectedRating + ' star' + (selectedRating > 1 ? 's' : ''),
-      feedback:     selectedRating + ' star rating — no written review.',
-      submitted_at: new Date().toLocaleString('en-GB')
-    });
-    window.location.href = 'https://g.page/r/CTUvzMKAhhrUEBM/review';
-  }
 </script>
 </body>
 </html>
