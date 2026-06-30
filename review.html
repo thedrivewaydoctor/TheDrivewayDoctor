@@ -147,14 +147,13 @@
   function goBack() {
     selectedRating = 0;
     stars.forEach(function(s) { s.classList.remove('active'); });
-    hide('lowScreen'); hide('highScreen');
+    hide('lowScreen');
     document.getElementById('lowFeedback').value = '';
-    document.getElementById('highFeedback').value = '';
     show('ratingScreen');
   }
 
   function showThankyou(heading, msg) {
-    hide('lowScreen'); hide('highScreen');
+    hide('lowScreen');
     document.getElementById('thankyouHeading').textContent = heading;
     document.getElementById('thankyouMsg').textContent = msg;
     show('thankyouScreen');
